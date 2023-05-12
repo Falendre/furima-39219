@@ -6,7 +6,7 @@
 | :----------------- | :----- | :------------------------ |
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| encrypted_password | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
@@ -31,14 +31,13 @@
 | item_status_id   | integer    | null: false                    |
 | cost_id          | integer    | null: false                    |
 | prefecture_id    | integer    | null: false                    |
-| shopping_days_id | integer    | null: false                    |
+| shopping_day_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
 
 #### Association
 
 - belongs_to :user
 - has_one :order
-- belongs_to:buyer
 
 <br>
 
@@ -47,7 +46,7 @@
 | Column     | Type       | Options                        |
 | :--------- | :--------- | :----------------------------- |
 | user       | references | null: false, foreign_key: true |
-| items      | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 #### Association
 
@@ -59,18 +58,19 @@
 
 ###  buyersテーブル
 
-| Column             | Type    | Options     |
-| :----------------- | :------ | :---------- |
-| post code          | string  | null: false |
-| prefecture_id      | integer | null: false |
-| town               | string  | null: false |
-| address            | string  | null: false |
-| building_name      | string  |             |
-| tel                | string  | null: false |
+| Column             | Type       | Options                        |
+| :----------------- | :--------- | :----------------------------- |
+| order              | references | nill: false, foreign_key: true |
+| post_code          | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| town               | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     |                                |
+| tel                | string     | null: false                    |
 
 #### Association
 
-- belongs_to :item
+- belongs_to :order
 
 <br>
 
