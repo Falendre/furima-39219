@@ -31,7 +31,7 @@
 | item_status_id   | integer    | null: false                    |
 | cost_id          | integer    | null: false                    |
 | prefecture_id    | integer    | null: false                    |
-| shopping_day_id | integer    | null: false                    |
+| shopping_day_id  | integer    | null: false                    |
 | price            | integer    | null: false                    |
 
 #### Association
