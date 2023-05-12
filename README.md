@@ -4,9 +4,9 @@
 
 | Column             | Type   | Options                   |
 | :----------------- | :----- | :------------------------ |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| password           | string | null: false, unique: true |
+| encrypted_password | string | null: false, unique: true |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
@@ -17,7 +17,6 @@
 
 - has_many :items  
 - has_many :orders 
-- belongs_to:buyer
 
 <br>
 
@@ -25,45 +24,45 @@
 
 | Column           | Type       | Options                        |
 | :--------------- | :--------- | :----------------------------- |
+| user             | references | null: false, foreign_key: true |
 | name             | string     | null: false                    |
 | description      | text       | null: false                    |
-| category         | integer    | null: false                    |
-| item_status      | integer    | null: false                    |
-| cost             | integer    | null: false                    |
-| day              | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| item_status_id   | integer    | null: false                    |
+| cost_id          | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| shopping_days_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
 
 #### Association
 
 - belongs_to :user
-- has_one :orders
+- has_one :order
+- belongs_to:buyer
 
 <br>
 
-### order テーブル
+### orders テーブル
 
 | Column     | Type       | Options                        |
 | :--------- | :--------- | :----------------------------- |
-| user_id    | references | null: false, foreign_key: true |
-| items_id   | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
+| items      | references | null: false, foreign_key: true |
 
 #### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one :buyer
 
 <br>
 
-###  buyerテーブル
+###  buyersテーブル
 
 | Column             | Type    | Options     |
 | :----------------- | :------ | :---------- |
-| last_name          | string  | null: false |
-| first_name         | string  | null: false |
-| last_name_kana     | string  | null: false |
-| first_name_kana    | string  | null: false |
 | post code          | string  | null: false |
-| prefecture         | string  | null: false |
+| prefecture_id      | integer | null: false |
 | town               | string  | null: false |
 | address            | string  | null: false |
 | building_name      | string  |             |
@@ -71,18 +70,8 @@
 
 #### Association
 
-- belongs_to :user
+- belongs_to :item
 
 <br>
 
-### curd テーブル
 
-| Column       | Type       | Options                        |
-| :----------- | :--------- | :----------------------------- |
-| user_id      | references | null: false, foreign_key: true |
-| token_id     | string     | null: false                    |
-| customer_id  | string     | null: false                    |
-
-#### Association
-
-- belongs_to :user
