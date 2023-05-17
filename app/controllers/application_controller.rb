@@ -10,8 +10,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #新規登録時のストロングパラメーター
+  # 新規登録時のストロングパラメーター
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birth_day])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: [:nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birth_day])
   end
 end

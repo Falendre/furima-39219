@@ -1,10 +1,10 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  
-  #各テーブルのアソシエーション
+
+  # 各テーブルのアソシエーション
   belongs_to :user
   has_one_attached :image
-  #ActiveHashnoのアソシエーション
+  # ActiveHashnoのアソシエーション
   belongs_to :category
   belongs_to :item_status
   belongs_to :cost
@@ -30,7 +30,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :prefecture_id
     validates :item_status_id
-    validates :shipping_cost_id
+    validates :cost_id
     validates :shopping_day_id
   end
 end
