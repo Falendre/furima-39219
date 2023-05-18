@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   # 各テーブルのアソシエーション
   belongs_to :user
   has_one_attached :image
-  # ActiveHashnoのアソシエーション
+  # ActiveHashのアソシエーション
   belongs_to :category
   belongs_to :item_status
   belongs_to :cost
@@ -25,7 +25,7 @@ class Item < ApplicationRecord
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 
-  # 「--」の時は保存不可
+  # 「---」の時は保存不可
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :prefecture_id
