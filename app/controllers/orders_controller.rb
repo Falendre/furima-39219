@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   def create
     @order_entry = OrderEntry.new(order_params)
     if @order_entry.valid?
+      pay_item
       @order_entry.save
       return redirect_to root_path
     else
@@ -21,6 +22,15 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:post_code, :prefecture_id, :town, :address, :building_name, :tel).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
+
+  def pay_item
+    Payjp.api_key = "sk_test_bcc9331eeab0863395ca3b95"
+    Payjp::Charge.create(
+      amount: @item.price,        # 商品の値段
+      card: order_params[:token], # カードトークン
+      currency: 'jpy'             # 通貨の種類（日本円）
+    )
   end
 
   def not_purchased_item
