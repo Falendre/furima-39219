@@ -11,7 +11,7 @@ class OrderEntry
     validates :town
     validates :address
     validates :tel, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
-    validates :token, presence: true
+    validates :token
   end
 
   def save
